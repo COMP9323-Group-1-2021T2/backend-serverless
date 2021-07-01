@@ -1,0 +1,37 @@
+service: comp9323
+
+variablesResolutionMode: 20210326
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-prune-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: comp9323
+  memorySize: 128
+  region: ap-southeast-2 # Sydney
+  stage: ${opt:stage, 'staging'}
+  lambdaHashingVersion: "20201221"
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  Healthcheck:
+    handler: src/http/Healthcheck.handler
+    vpc: ${self:custom.vpc}
+    events:
+      - http:
+          path: /healthcheck
+          method: get
+          cors: true
+
+custom:
+  vpc:
+    securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
+    subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
+
+  prune:
+    automatic: true
+    number: 2
