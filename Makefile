@@ -1,5 +1,5 @@
 deploy-staging:
-	sls deploy --stage=staging
+	sls deploy --stage=staging --verbose
 
 deploy-production:
-	sls deploy --stage=production
+	sls deploy --stage=production --verbose

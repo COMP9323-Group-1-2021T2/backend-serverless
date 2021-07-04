@@ -1,4 +1,4 @@
-export const response200 = (payload: any) => ({
+export const response200 = <T>(payload: T) => ({
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,

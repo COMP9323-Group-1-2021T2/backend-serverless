@@ -36,6 +36,15 @@ functions:
           method: post
           cors: true
 
+  GetCategories:
+    handler: src/http/GetCategories.handler
+    vpc: ${self:custom.vpc}
+    events:
+      - http:
+          path: /categories
+          method: get
+          cors: true
+
 custom:
   vpc:
     securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
