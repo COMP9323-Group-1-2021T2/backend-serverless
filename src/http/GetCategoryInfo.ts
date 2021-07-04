@@ -13,7 +13,7 @@ export const handler = async ({ pathParameters }: APIGatewayEvent) => {
 
   const mockCategoryInfo: CategoryInfo = {
     id: "1",
-    category_id: parentId,
+    category_id: subId,
     info: `Some placeholder information for sub category id: ${subId}`,
   };
 

@@ -59,6 +59,20 @@ functions:
                 parentId: true
                 subId: true
 
+  GetCategoryArticles:
+    handler: src/http/GetCategoryArticles.handler
+    vpc: ${self:custom.vpc}
+    events:
+      - http:
+          path: /{parentId}/{subId}/articles
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                parentId: true
+                subId: true
+
 custom:
   vpc:
     securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
