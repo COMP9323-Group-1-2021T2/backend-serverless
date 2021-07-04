@@ -26,6 +26,15 @@ export const response403 = () => ({
   body: JSON.stringify({ error: "Forbidden" }),
 });
 
+export const response400 = () => ({
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  },
+  statusCode: 403,
+  body: JSON.stringify({ error: "Bad request" }),
+});
+
 export const response500 = (message: string) => ({
   headers: {
     "Access-Control-Allow-Origin": "*",

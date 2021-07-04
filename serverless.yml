@@ -45,6 +45,20 @@ functions:
           method: get
           cors: true
 
+  GetCategoryInfo:
+    handler: src/http/GetCategoryInfo.handler
+    vpc: ${self:custom.vpc}
+    events:
+      - http:
+          path: /{parentId}/{subId}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                parentId: true
+                subId: true
+
 custom:
   vpc:
     securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
