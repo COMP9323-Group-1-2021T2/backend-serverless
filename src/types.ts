@@ -15,6 +15,10 @@ export type GetCategoryArticlesResponse = {
   data: Article[];
 }
 
+export type GetCategoryVideosResponse = {
+  data: Video[];
+}
+
 // Data models
 
 export type Category = {
@@ -30,6 +34,15 @@ export type CategoryInfo = {
 }
 
 export type Article = {
+  id: string;
+  category_id: string;
+  title: string;
+  url: string;
+  image: string;
+  description: string;
+}
+
+export type Video = {
   id: string;
   category_id: string;
   title: string;

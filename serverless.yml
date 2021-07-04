@@ -73,6 +73,20 @@ functions:
                 parentId: true
                 subId: true
 
+  GetCategoryVideos:
+    handler: src/http/GetCategoryVideos.handler
+    vpc: ${self:custom.vpc}
+    events:
+      - http:
+          path: /{parentId}/{subId}/videos
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                parentId: true
+                subId: true
+
 custom:
   vpc:
     securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
