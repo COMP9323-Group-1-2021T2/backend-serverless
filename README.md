@@ -23,4 +23,10 @@ $ make deploy-staging
 
 # Deploy to production
 $ make deploy-production
+
+# Run migration to staging
+$ make migrate-staging
+
+# Run migration to production
+$ make migrate-production
 ```
