@@ -19,6 +19,51 @@ const migrations = {
         );
     `);
   },
+  v02_create_category_info: async (client: Client) => {
+    await client.query(`
+      CREATE TABLE category_info
+        (
+           id          UUID DEFAULT uuid_generate_v4(),
+           category_id VARCHAR(40) NOT NULL,
+           info        TEXT NOT NULL,
+           created_at  TIMESTAMP NOT NULL,
+           PRIMARY KEY(id),
+           CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id)
+        );
+    `);
+  },
+  v03_create_article: async (client: Client) => {
+    await client.query(`
+      CREATE TABLE article
+        (
+           id          UUID DEFAULT uuid_generate_v4(),
+           category_id VARCHAR(40) NOT NULL,
+           title       TEXT NOT NULL,
+           url         TEXT NOT NULL,
+           image       TEXT NOT NULL,
+           description TEXT NOT NULL,
+           created_at  TIMESTAMP NOT NULL,
+           PRIMARY KEY(id),
+           CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id)
+        );
+    `);
+  },
+  v04_create_video: async (client: Client) => {
+    await client.query(`
+      CREATE TABLE video
+        (
+           id          UUID DEFAULT uuid_generate_v4(),
+           category_id VARCHAR(40) NOT NULL,
+           title       TEXT NOT NULL,
+           url         TEXT NOT NULL,
+           image       TEXT NOT NULL,
+           description TEXT NOT NULL,
+           created_at  TIMESTAMP NOT NULL,
+           PRIMARY KEY(id),
+           CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id)
+        );
+    `);
+  },
 };
 
 export default migrations;
