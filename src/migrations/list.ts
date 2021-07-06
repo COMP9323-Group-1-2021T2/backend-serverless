@@ -64,6 +64,14 @@ const migrations = {
         );
     `);
   },
+  v05_add_created_at_defaults: async (client: Client) => {
+    await client.query(`
+      ALTER TABLE category ALTER COLUMN created_at SET DEFAULT NOW();
+      ALTER TABLE category_info ALTER COLUMN created_at SET DEFAULT NOW();
+      ALTER TABLE article ALTER COLUMN created_at SET DEFAULT NOW();
+      ALTER TABLE video ALTER COLUMN created_at SET DEFAULT NOW();
+    `);
+  },
 };
 
 export default migrations;
