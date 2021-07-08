@@ -60,18 +60,17 @@ functions:
               paths:
                 categoryId: true
 
-  # GetCategoryVideos:
-  #   handler: src/http/GetCategoryVideos.handler
-  #   events:
-  #     - http:
-  #         path: /{parentId}/{subId}/videos
-  #         method: get
-  #         cors: true
-  #         request:
-  #           parameters:
-  #             paths:
-  #               parentId: true
-  #               subId: true
+  GetCategoryVideos:
+    handler: src/http/GetCategoryVideos.handler
+    events:
+      - http:
+          path: /{categoryId}/videos
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                categoryId: true
 
 custom:
   env:

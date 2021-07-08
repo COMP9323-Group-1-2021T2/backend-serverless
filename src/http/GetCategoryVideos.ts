@@ -1,34 +1,20 @@
 import { APIGatewayEvent } from "aws-lambda";
-import { GetCategoryVideosResponse, Video } from "../types";
+import { getCategoryVideos } from "../db/getCategoryVideos";
+import { GetCategoryVideosResponse } from "../types";
+import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
 export const handler = async ({ pathParameters }: APIGatewayEvent) => {
-  const { parentId, subId } = pathParameters || {};
+  const { categoryId } = pathParameters || {};
 
-  if (!parentId || !subId) {
+  if (!categoryId) {
     return response400();
   }
 
-  console.log(`ParentID: ${parentId}, SubID: ${subId}`);
+  const client = getClient();
+  await client.connect();
 
-  const mockVideos: Video[] = [
-    {
-      id: "1",
-      category_id: subId,
-      title: "UNSW Alumni Awards",
-      url: "https://www.youtube.com/watch?v=8a1s7073KjY",
-      image: "http://i3.ytimg.com/vi/8a1s7073KjY/maxresdefault.jpg",
-      description: "Some description",
-    },
-    {
-      id: "2",
-      category_id: subId,
-      title: "Welcome - UNSW School of Chemistry",
-      url: "https://www.youtube.com/watch?v=1_VpT0NwV2s",
-      image: "http://i3.ytimg.com/vi/1_VpT0NwV2s/maxresdefault.jpg",
-      description: "Some description",
-    },
-  ];
+  const videos = await getCategoryVideos(client, categoryId);
 
-  return response200<GetCategoryVideosResponse>({ data: mockVideos });
+  return response200<GetCategoryVideosResponse>({ data: videos });
 };
