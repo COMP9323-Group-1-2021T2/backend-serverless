@@ -74,13 +74,10 @@ functions:
 
 custom:
   env:
-    # DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
-    DB_CONN_URL: ${ssm:/comp9323/staging/DB_CONN_URL}
+    DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
   vpc:
-    # securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
-    # subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
-    securityGroupIds: ${ssm:/comp9323/staging/DEFAULT_SECURITY_GROUP}
-    subnetIds: ${ssm:/comp9323/staging/PRIVATE_SUBNET_IDS}
+    securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
+    subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
 
   prune:
     automatic: true
