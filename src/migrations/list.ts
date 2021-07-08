@@ -72,6 +72,11 @@ const migrations = {
       ALTER TABLE video ALTER COLUMN created_at SET DEFAULT NOW();
     `);
   },
+  v06_make_category_parent_id_nullable: async (client: Client) => {
+    await client.query(`
+      ALTER TABLE category ALTER COLUMN parent_id DROP NOT NULL;
+    `);
+  },
 };
 
 export default migrations;

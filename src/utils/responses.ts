@@ -43,3 +43,12 @@ export const response500 = (message: string) => ({
   statusCode: 500,
   body: JSON.stringify({ error: message }),
 });
+
+export const response404 = () => ({
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  },
+  statusCode: 404,
+  body: JSON.stringify({ error: "Not Found" }),
+});

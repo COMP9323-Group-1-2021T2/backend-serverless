@@ -14,38 +14,22 @@ provider:
   region: ap-southeast-2 # Sydney
   stage: ${opt:stage, 'staging'}
   lambdaHashingVersion: "20201221"
+  timeout: 30
+  vpc: ${self:custom.vpc}
   apiGateway:
     shouldStartNameWithService: true
+  environment:
+    DB_CONN_URL: ${self:custom.env.DB_CONN_URL}
 
 functions:
   UpMigration:
-    handler: src/migrations/migrations.handler
-    vpc: ${self:custom.vpc}
-    timeout: 30
-    environment:
-      DB_CONN_URL: ${self:custom.env.DB_CONN_URL}
+    handler: src/migrations/UpMigration.handler
 
-  Healthcheck:
-    handler: src/http/Healthcheck.handler
-    vpc: ${self:custom.vpc}
-    events:
-      - http:
-          path: /healthcheck
-          method: get
-          cors: true
-
-  HelloName:
-    handler: src/http/HelloName.handler
-    vpc: ${self:custom.vpc}
-    events:
-      - http:
-          path: /hello
-          method: post
-          cors: true
+  SeedData:
+    handler: src/migrations/SeedData.handler
 
   GetCategories:
     handler: src/http/GetCategories.handler
-    vpc: ${self:custom.vpc}
     events:
       - http:
           path: /categories
@@ -54,45 +38,41 @@ functions:
 
   GetCategoryInfo:
     handler: src/http/GetCategoryInfo.handler
-    vpc: ${self:custom.vpc}
     events:
       - http:
-          path: /{parentId}/{subId}
+          path: /{categoryId}
           method: get
           cors: true
           request:
             parameters:
               paths:
-                parentId: true
-                subId: true
+                categoryId: true
 
-  GetCategoryArticles:
-    handler: src/http/GetCategoryArticles.handler
-    vpc: ${self:custom.vpc}
-    events:
-      - http:
-          path: /{parentId}/{subId}/articles
-          method: get
-          cors: true
-          request:
-            parameters:
-              paths:
-                parentId: true
-                subId: true
+  # GetCategoryArticles:
+  #   handler: src/http/GetCategoryArticles.handler
+  #   events:
+  #     - http:
+  #         path: /{parentId}/{subId}/articles
+  #         method: get
+  #         cors: true
+  #         request:
+  #           parameters:
+  #             paths:
+  #               parentId: true
+  #               subId: true
 
-  GetCategoryVideos:
-    handler: src/http/GetCategoryVideos.handler
-    vpc: ${self:custom.vpc}
-    events:
-      - http:
-          path: /{parentId}/{subId}/videos
-          method: get
-          cors: true
-          request:
-            parameters:
-              paths:
-                parentId: true
-                subId: true
+  # GetCategoryVideos:
+  #   handler: src/http/GetCategoryVideos.handler
+  #   events:
+  #     - http:
+  #         path: /{parentId}/{subId}/videos
+  #         method: get
+  #         cors: true
+  #         request:
+  #           parameters:
+  #             paths:
+  #               parentId: true
+  #               subId: true
 
 custom:
   env:
