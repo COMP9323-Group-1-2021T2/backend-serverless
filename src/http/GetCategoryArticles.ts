@@ -1,34 +1,20 @@
 import { APIGatewayEvent } from "aws-lambda";
-import { Article, GetCategoryArticlesResponse } from "../types";
+import { getCategoryArticles } from "../db/getCategoryArticles";
+import { GetCategoryArticlesResponse } from "../types";
+import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
 export const handler = async ({ pathParameters }: APIGatewayEvent) => {
-  const { parentId, subId } = pathParameters || {};
+  const { categoryId } = pathParameters || {};
 
-  if (!parentId || !subId) {
+  if (!categoryId) {
     return response400();
   }
 
-  console.log(`ParentID: ${parentId}, SubID: ${subId}`);
+  const client = getClient();
+  await client.connect();
 
-  const mockArticles: Article[] = [
-    {
-      id: "1",
-      category_id: subId,
-      title: "Some Google Article",
-      url: "https://google.com",
-      image: "some-image",
-      description: "Search engine",
-    },
-    {
-      id: "2",
-      category_id: subId,
-      title: "Some FB Article",
-      url: "https://facebook.com",
-      image: "some-image",
-      description: "Some social media description",
-    },
-  ];
+  const articles = await getCategoryArticles(client, categoryId);
 
-  return response200<GetCategoryArticlesResponse>({ data: mockArticles });
+  return response200<GetCategoryArticlesResponse>({ data: articles });
 };

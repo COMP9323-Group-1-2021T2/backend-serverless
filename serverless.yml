@@ -48,18 +48,17 @@ functions:
               paths:
                 categoryId: true
 
-  # GetCategoryArticles:
-  #   handler: src/http/GetCategoryArticles.handler
-  #   events:
-  #     - http:
-  #         path: /{parentId}/{subId}/articles
-  #         method: get
-  #         cors: true
-  #         request:
-  #           parameters:
-  #             paths:
-  #               parentId: true
-  #               subId: true
+  GetCategoryArticles:
+    handler: src/http/GetCategoryArticles.handler
+    events:
+      - http:
+          path: /{categoryId}/articles
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                categoryId: true
 
   # GetCategoryVideos:
   #   handler: src/http/GetCategoryVideos.handler
@@ -76,10 +75,13 @@ functions:
 
 custom:
   env:
-    DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
+    # DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
+    DB_CONN_URL: ${ssm:/comp9323/staging/DB_CONN_URL}
   vpc:
-    securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
-    subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
+    # securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
+    # subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
+    securityGroupIds: ${ssm:/comp9323/staging/DEFAULT_SECURITY_GROUP}
+    subnetIds: ${ssm:/comp9323/staging/PRIVATE_SUBNET_IDS}
 
   prune:
     automatic: true
