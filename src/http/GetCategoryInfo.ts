@@ -16,6 +16,8 @@ export const handler = async ({ pathParameters }: APIGatewayEvent) => {
 
   const categoryInfo = await getCategoryInfo(client, categoryId);
 
+  await client.end()
+
   if (categoryInfo === null) {
     return response404()
   }
