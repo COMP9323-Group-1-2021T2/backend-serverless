@@ -7,6 +7,15 @@ export const response200 = <T>(payload: T) => ({
   body: JSON.stringify(payload),
 });
 
+export const response201 = <T>(payload: T) => ({
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+    },
+    statusCode: 201,
+    body: JSON.stringify(payload),
+});
+
 export const response301 = (redirectUrl: string) => ({
   headers: {
     "Access-Control-Allow-Origin": "*",
