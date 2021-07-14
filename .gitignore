@@ -12,3 +12,5 @@ build/
 .dynamodb
 tmp/
 src/test/
+
+.vs/
