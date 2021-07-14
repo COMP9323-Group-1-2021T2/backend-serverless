@@ -16,5 +16,7 @@ export const handler = async ({ pathParameters }: APIGatewayEvent) => {
 
   const videos = await getCategoryVideos(client, categoryId);
 
+  await client.end()
+
   return response200<GetCategoryVideosResponse>({ data: videos });
 };

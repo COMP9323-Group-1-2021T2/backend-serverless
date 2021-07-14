@@ -16,5 +16,7 @@ export const handler = async ({ pathParameters }: APIGatewayEvent) => {
 
   const articles = await getCategoryArticles(client, categoryId);
 
+  await client.end()
+
   return response200<GetCategoryArticlesResponse>({ data: articles });
 };

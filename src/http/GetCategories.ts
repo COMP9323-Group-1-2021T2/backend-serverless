@@ -9,5 +9,7 @@ export const handler = async () => {
 
   const categories = await getCategories(client);
 
+  await client.end()
+
   return response200<GetCategoriesResponse>({ data: categories });
 };
