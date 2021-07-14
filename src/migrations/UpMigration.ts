@@ -20,8 +20,8 @@ export const handler = async () => {
         await addToMigration(dbClient, name)
 
       } catch (e) {
-        console.log("Failed!");
-        return;
+        console.log(`Failed: ${e.message}`);
+        return "Failed";
       }
 
     }

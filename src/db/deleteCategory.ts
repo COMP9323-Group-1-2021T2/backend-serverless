@@ -5,7 +5,7 @@ export const deleteCategory = async (
   id: string
 ): Promise<void> => {
   const sql = {
-    text: "DELETE FROM category WHERE id = $1 CASCADE",
+    text: "DELETE FROM category WHERE id = $1",
     values: [id],
   };
 
