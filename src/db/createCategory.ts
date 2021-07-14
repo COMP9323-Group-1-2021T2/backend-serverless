@@ -1,15 +1,26 @@
-import { Client } from 'pg';
+import { Client } from "pg";
+import { Category } from "../types";
 
-export const createCategory = async (client: Client, name: string, info: string, parent_id: string | null): Promise<Boolean> => {
-    const sql = {
-        text: 'INSERT INTO category (name, info) VALUES ($1, $2);',
-        values: [name, info, parent_id],
-    }
+export const createCategory = async (
+  client: Client,
+  id: string,
+  name: string,
+  info: string,
+  parentId?: string
+): Promise<Category> => {
+  const categoryInsertQuery = {
+    text:
+      "INSERT INTO category (id, name, parent_id) VALUES ($1, $2, $3) RETURNING *",
+    values: [id, name, parentId],
+  };
 
-    try {
-        await client.query(sql);
-    } catch (error) {
-        return false;
-    }
-    return true;
-}
+  const categoryInfoInsertQuery = {
+    text: "INSERT INTO category_info (category_id, info) VALUES ($1, $2)",
+    values: [id, info],
+  };
+
+  const category = (await client.query<Category>(categoryInsertQuery)).rows[0];
+  await client.query(categoryInfoInsertQuery);
+
+  return category;
+};

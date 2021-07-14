@@ -72,6 +72,38 @@ functions:
               paths:
                 categoryId: true
 
+  CreateCategory:
+    handler: src/http/CreateCategory.handler
+    events:
+      - http:
+          path: /categories
+          method: post
+          cors: true
+
+  CreateCategoryVideo:
+    handler: src/http/CreateCategoryVideo.handler
+    events:
+      - http:
+          path: /{categoryId}/videos
+          method: post
+          cors: true
+          request:
+            parameters:
+              paths:
+                categoryId: true
+
+  CreateCategoryArticle:
+    handler: src/http/CreateCategoryArticle.handler
+    events:
+      - http:
+          path: /{categoryId}/articles
+          method: post
+          cors: true
+          request:
+            parameters:
+              paths:
+                categoryId: true
+
 custom:
   env:
     DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}

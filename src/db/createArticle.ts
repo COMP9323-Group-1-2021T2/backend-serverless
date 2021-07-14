@@ -1,15 +1,19 @@
-import { Client } from 'pg';
+import { Client } from "pg";
+import { Article } from "../types";
 
-export const createArticle = async (client: Client, category_id: string, title: string, url: string, image: string, description: string): Promise<Boolean> => {
-    const sql = {
-        text: 'INSERT INTO article (category_id, title, url, image, description) VALUES ($1, $2, $3, $4, $5);',
-        values: [category_id, title, url, image, description],
-    }
+export const createArticle = async (
+  client: Client,
+  categoryId: string,
+  title: string,
+  url: string,
+  image: string,
+  description: string
+): Promise<Article> => {
+  const sql = {
+    text:
+      "INSERT INTO article (category_id, title, url, image, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    values: [categoryId, title, url, image, description],
+  };
 
-    try {
-        await client.query(sql)
-    } catch (error) {
-        return false;
-    }
-    return true;
-}
+  return (await client.query<Article>(sql)).rows[0];
+};
