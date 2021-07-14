@@ -7,7 +7,7 @@ export const createArticle = async (client: Client, category_id: string, title: 
     }
 
     try {
-        await client.query(sql);
+        await client.query(sql)
     } catch (error) {
         return false;
     }
