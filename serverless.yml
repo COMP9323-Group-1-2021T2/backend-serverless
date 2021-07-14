@@ -104,6 +104,18 @@ functions:
               paths:
                 categoryId: true
 
+  DeleteCategory:
+    handler: src/http/DeleteCategory.handler
+    events:
+      - http:
+          path: /{categoryId}
+          method: delete
+          cors: true
+          request:
+            parameters:
+              paths:
+                categoryId: true
+
 custom:
   env:
     DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}

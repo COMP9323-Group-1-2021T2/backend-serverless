@@ -1,7 +1,3 @@
-export type HelloNameBody = {
-  name: string;
-};
-
 // API Requests
 export type CreateCategoryRequest = {
   id: string;
@@ -51,6 +47,10 @@ export type CreateCategoryArticleResponse = {
 
 export type CreateCategoryVideoResponse = {
   data: Article;
+};
+
+export type DeleteCategoryResponse = {
+  status: string;
 };
 
 // Data models

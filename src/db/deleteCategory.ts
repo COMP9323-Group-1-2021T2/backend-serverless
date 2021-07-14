@@ -1,15 +1,13 @@
-import { Client } from 'pg';
+import { Client } from "pg";
 
-export const deleteCategory = async (client: Client, id: string): Promise<Boolean> => {
-    const sql = {
-        text: 'DELETE FROM category WHERE id = $1;',
-        values: [id],
-    }
+export const deleteCategory = async (
+  client: Client,
+  id: string
+): Promise<void> => {
+  const sql = {
+    text: "DELETE FROM category WHERE id = $1 CASCADE",
+    values: [id],
+  };
 
-    try {
-        await client.query(sql);
-    } catch (error) {
-        return false;
-    }
-    return true;
-}
+  await client.query(sql);
+};
