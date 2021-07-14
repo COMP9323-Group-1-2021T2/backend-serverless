@@ -22,6 +22,11 @@ provider:
     DB_CONN_URL: ${self:custom.env.DB_CONN_URL}
 
 functions:
+  SecretAuthoriser:
+    handler: src/authorisers/SecretAuthoriser.handler
+    environment:
+      SECRET: ${self:custom.env.SECRET}
+
   UpMigration:
     handler: src/migrations/UpMigration.handler
 
@@ -79,6 +84,8 @@ functions:
           path: /categories
           method: post
           cors: true
+          authorizer:
+            name: SecretAuthoriser
 
   CreateCategoryVideo:
     handler: src/http/CreateCategoryVideo.handler
@@ -87,6 +94,8 @@ functions:
           path: /{categoryId}/videos
           method: post
           cors: true
+          authorizer:
+            name: SecretAuthoriser
           request:
             parameters:
               paths:
@@ -99,6 +108,8 @@ functions:
           path: /{categoryId}/articles
           method: post
           cors: true
+          authorizer:
+            name: SecretAuthoriser
           request:
             parameters:
               paths:
@@ -111,6 +122,8 @@ functions:
           path: /{categoryId}
           method: delete
           cors: true
+          authorizer:
+            name: SecretAuthoriser
           request:
             parameters:
               paths:
@@ -119,6 +132,7 @@ functions:
 custom:
   env:
     DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
+    SECRET: ${ssm:/comp9323/${self:provider.stage}/SECRET}
   vpc:
     securityGroupIds: ${ssm:/comp9323/${self:provider.stage}/DEFAULT_SECURITY_GROUP}
     subnetIds: ${ssm:/comp9323/${self:provider.stage}/PRIVATE_SUBNET_IDS}
