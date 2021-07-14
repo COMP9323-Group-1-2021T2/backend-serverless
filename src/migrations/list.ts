@@ -77,6 +77,20 @@ const migrations = {
       ALTER TABLE category ALTER COLUMN parent_id DROP NOT NULL;
     `);
   },
+  v07_add_cascade_delete: async (client: Client) => {
+    await client.query(`
+      BEGIN
+        ALTER TABLE category_info DROP CONSTRAINT fk_category;
+        ALTER TABLE category_info ADD CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE;
+
+        ALTER TABLE article DROP CONSTRAINT fk_category;
+        ALTER TABLE article ADD CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE;
+
+        ALTER TABLE video DROP CONSTRAINT fk_category;
+        ALTER TABLE video ADD CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE;
+      COMMIT
+    `);
+  },
 };
 
 export default migrations;
