@@ -129,6 +129,16 @@ functions:
               paths:
                 categoryId: true
 
+  Login:
+    handler: src/http/Login.handler
+    events:
+      - http:
+          path: /login
+          method: post
+          cors: true
+    environment:
+      SECRET: ${self:custom.env.SECRET}
+
 custom:
   env:
     DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}

@@ -93,6 +93,19 @@ const migrations = {
       `ALTER TABLE video ADD CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE CASCADE`
     );
   },
+  v08_add_user: async (client: Client) => {
+    await client.query(`
+      CREATE TABLE users
+        (
+           id          UUID DEFAULT uuid_generate_v4(),
+           email       TEXT NOT NULL,
+           password    TEXT NOT NULL,
+           login_type  TEXT NOT NULL,
+           created_at  TIMESTAMP NOT NULL DEFAULT NOW(),
+           PRIMARY KEY(id)
+        );
+    `);
+  },
 };
 
 export default migrations;

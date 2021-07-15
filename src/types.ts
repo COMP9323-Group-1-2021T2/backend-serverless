@@ -20,6 +20,11 @@ export type CreateCategoryVideoRequest = {
   description: string;
 };
 
+export type LoginRequest = {
+  email: string;
+  password: string;
+};
+
 // API Responses
 export type GetCategoriesResponse = {
   data: Category[];
@@ -53,6 +58,10 @@ export type DeleteCategoryResponse = {
   status: string;
 };
 
+export type LoginResponse = {
+  accessToken: string;
+};
+
 // Data models
 
 export type Category = {
@@ -84,3 +93,15 @@ export type Video = {
   image: string;
   description: string;
 };
+
+export type User = {
+  id: string;
+  email: string;
+  login_type: string;
+  password: string;
+}
+
+export type JwtClaims = {
+  id: string;
+  login_type: string;
+}
