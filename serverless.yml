@@ -135,6 +135,21 @@ functions:
                 categoryId: true
                 videoId: true
 
+  UpdateCategoryVideo:
+    handler: src/http/UpdateCategoryVideo.handler
+    events:
+      - http:
+          path: /{categoryId}/videos/{videoId}
+          method: put
+          cors: true
+          authorizer:
+            name: JwtAuthoriser
+          request:
+            parameters:
+              paths:
+                categoryId: true
+                videoId: true
+
   DeleteCategory:
     handler: src/http/DeleteCategory.handler
     events:

@@ -25,6 +25,21 @@ export type LoginRequest = {
   password: string;
 };
 
+export type UpdateCategoryVideoRequest = {
+  title: string;
+  url: string;
+  image: string;
+  description: string;
+};
+
+
+export type UpdateCategoryArticleRequest = {
+  title: string;
+  url: string;
+  image: string;
+  description: string;
+};
+
 // API Responses
 export type GetCategoriesResponse = {
   data: Category[];
@@ -51,7 +66,7 @@ export type CreateCategoryArticleResponse = {
 };
 
 export type CreateCategoryVideoResponse = {
-  data: Article;
+  data: Video;
 };
 
 export type DeleteCategoryResponse = {
@@ -68,6 +83,14 @@ export type DeleteCategoryArticleResponse = {
 
 export type LoginResponse = {
   accessToken: string;
+};
+
+export type UpdateCategoryVideoResponse = {
+  data: Video;
+};
+
+export type UpdateCategoryArticleResponse = {
+  data: Article;
 };
 
 // Data models
