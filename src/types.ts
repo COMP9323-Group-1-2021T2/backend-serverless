@@ -58,6 +58,14 @@ export type DeleteCategoryResponse = {
   status: string;
 };
 
+export type DeleteCategoryVideoResponse = {
+  status: string;
+};
+
+export type DeleteCategoryArticleResponse = {
+  status: string;
+};
+
 export type LoginResponse = {
   accessToken: string;
 };
@@ -104,4 +112,8 @@ export type User = {
 export type JwtClaims = {
   id: string;
   login_type: string;
+}
+
+export type RequestContext = {
+  id: string;
 }

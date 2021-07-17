@@ -27,6 +27,11 @@ functions:
     environment:
       SECRET: ${self:custom.env.SECRET}
 
+  JwtAuthoriser:
+    handler: src/authorisers/JwtAuthoriser.handler
+    environment:
+      SECRET: ${self:custom.env.SECRET}
+
   UpMigration:
     handler: src/migrations/UpMigration.handler
 
@@ -85,7 +90,7 @@ functions:
           method: post
           cors: true
           authorizer:
-            name: SecretAuthoriser
+            name: JwtAuthoriser
 
   CreateCategoryVideo:
     handler: src/http/CreateCategoryVideo.handler
@@ -95,7 +100,7 @@ functions:
           method: post
           cors: true
           authorizer:
-            name: SecretAuthoriser
+            name: JwtAuthoriser
           request:
             parameters:
               paths:
@@ -109,11 +114,26 @@ functions:
           method: post
           cors: true
           authorizer:
-            name: SecretAuthoriser
+            name: JwtAuthoriser
           request:
             parameters:
               paths:
                 categoryId: true
+
+  DeleteCategoryVideo:
+    handler: src/http/DeleteCategoryVideo.handler
+    events:
+      - http:
+          path: /{categoryId}/videos/{videoId}
+          method: delete
+          cors: true
+          authorizer:
+            name: JwtAuthoriser
+          request:
+            parameters:
+              paths:
+                categoryId: true
+                videoId: true
 
   DeleteCategory:
     handler: src/http/DeleteCategory.handler
@@ -123,7 +143,7 @@ functions:
           method: delete
           cors: true
           authorizer:
-            name: SecretAuthoriser
+            name: JwtAuthoriser
           request:
             parameters:
               paths:
