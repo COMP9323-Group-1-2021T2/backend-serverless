@@ -40,6 +40,10 @@ export type UpdateCategoryArticleRequest = {
   description: string;
 };
 
+export type CreateQuestionRequest = {
+  question: string;
+};
+
 // API Responses
 export type GetCategoriesResponse = {
   data: Category[];
@@ -93,6 +97,10 @@ export type UpdateCategoryArticleResponse = {
   data: Article;
 };
 
+export type CreateQuestionResponse = {
+  data: Question;
+}
+
 // Data models
 
 export type Category = {
@@ -130,6 +138,15 @@ export type User = {
   email: string;
   login_type: string;
   password: string;
+}
+
+export type Question = {
+  id: string;
+  question: string;
+  answer: string;
+  answered_by: string;
+  answered_at: string;
+  created_at: string;
 }
 
 export type JwtClaims = {

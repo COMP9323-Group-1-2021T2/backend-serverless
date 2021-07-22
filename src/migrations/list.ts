@@ -106,6 +106,21 @@ const migrations = {
         );
     `);
   },
+  v09_add_question: async (client: Client) => {
+    await client.query(`
+      CREATE TABLE question
+        (
+           id           UUID DEFAULT uuid_generate_v4(),
+           question     TEXT NOT NULL,
+           answer       TEXT,
+           answered_by  UUID,
+           answered_at  TIMESTAMP,
+           created_at   TIMESTAMP NOT NULL DEFAULT NOW(),
+           PRIMARY KEY(id),
+           CONSTRAINT fk_answered_by FOREIGN KEY(answered_by) REFERENCES users(id)
+        );
+    `);
+  },
 };
 
 export default migrations;

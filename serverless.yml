@@ -204,6 +204,31 @@ functions:
     environment:
       SECRET: ${self:custom.env.SECRET}
 
+  # GetQuestions:
+  #   handler: src/http/GetQuestions.handler
+  #   events:
+  #     - http:
+  #         path: /questions
+  #         method: get
+  #         cors: true
+
+  CreateQuestion:
+    handler: src/http/CreateQuestion.handler
+    events:
+      - http:
+          path: /questions
+          method: post
+          cors: true
+
+  # AnswerQuestion:
+  #   handler: src/http/DeleteCategory.handler
+  #   events:
+  #     - http:
+  #         path: /questions/{questionId}/answer
+  #         method: post
+  #         cors: true
+
+
 custom:
   env:
     DB_CONN_URL: ${ssm:/comp9323/${self:provider.stage}/DB_CONN_URL}
