@@ -204,13 +204,13 @@ functions:
     environment:
       SECRET: ${self:custom.env.SECRET}
 
-  # GetQuestions:
-  #   handler: src/http/GetQuestions.handler
-  #   events:
-  #     - http:
-  #         path: /questions
-  #         method: get
-  #         cors: true
+  GetQuestions:
+    handler: src/http/GetQuestions.handler
+    events:
+      - http:
+          path: /questions
+          method: get
+          cors: true
 
   CreateQuestion:
     handler: src/http/CreateQuestion.handler

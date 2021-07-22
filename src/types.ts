@@ -101,6 +101,10 @@ export type CreateQuestionResponse = {
   data: Question;
 }
 
+export type GetQuestionsResponse = {
+  data: Question[];
+}
+
 // Data models
 
 export type Category = {
