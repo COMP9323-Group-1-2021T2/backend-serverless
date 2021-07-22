@@ -220,6 +220,16 @@ functions:
           method: post
           cors: true
 
+  GetAdminQuestions:
+    handler: src/http/GetAdminQuestions.handler
+    events:
+      - http:
+          path: /questions/admin
+          method: get
+          cors: true
+          authorizer:
+            name: JwtAuthoriser
+
   # AnswerQuestion:
   #   handler: src/http/DeleteCategory.handler
   #   events:

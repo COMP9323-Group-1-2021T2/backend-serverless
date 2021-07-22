@@ -105,6 +105,10 @@ export type GetQuestionsResponse = {
   data: Question[];
 }
 
+export type GetAdminQuestionsResponse = {
+  data: Question[];
+}
+
 // Data models
 
 export type Category = {
