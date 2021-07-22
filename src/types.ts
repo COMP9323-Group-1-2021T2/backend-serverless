@@ -44,6 +44,10 @@ export type CreateQuestionRequest = {
   question: string;
 };
 
+export type AnswerQuestionRequest = {
+  answer: string;
+};
+
 // API Responses
 export type GetCategoriesResponse = {
   data: Category[];
@@ -107,6 +111,10 @@ export type GetQuestionsResponse = {
 
 export type GetAdminQuestionsResponse = {
   data: Question[];
+}
+
+export type AnswerQuestionResponse = {
+  data: Question;
 }
 
 // Data models

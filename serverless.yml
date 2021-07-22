@@ -230,13 +230,15 @@ functions:
           authorizer:
             name: JwtAuthoriser
 
-  # AnswerQuestion:
-  #   handler: src/http/DeleteCategory.handler
-  #   events:
-  #     - http:
-  #         path: /questions/{questionId}/answer
-  #         method: post
-  #         cors: true
+  AnswerQuestion:
+    handler: src/http/AnswerQuestion.handler
+    events:
+      - http:
+          path: /questions/{questionId}/answer
+          method: post
+          cors: true
+          authorizer:
+            name: JwtAuthoriser
 
 
 custom:
