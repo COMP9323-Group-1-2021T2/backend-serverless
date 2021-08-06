@@ -240,6 +240,16 @@ functions:
           authorizer:
             name: JwtAuthoriser
 
+  DeleteQuestion:
+    handler: src/http/DeleteQuestion.handler
+    events:
+      - http:
+          path: /questions/{questionId}
+          method: delete
+          cors: true
+          authorizer:
+            name: JwtAuthoriser
+
 
 custom:
   env:

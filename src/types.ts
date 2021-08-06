@@ -117,6 +117,10 @@ export type AnswerQuestionResponse = {
   data: Question;
 }
 
+export type DeleteQuestionResponse = {
+  status: string;
+}
+
 // Data models
 
 export type Category = {
