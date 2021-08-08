@@ -4,6 +4,7 @@ import { CreateCategoryRequest, CreateCategoryResponse } from "../types";
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Attempts to create a new 'category' record in the database using the fields provided
 export const handler = async ({ body }: APIGatewayProxyEvent) => {
   const { id, name, info, parent_id } = JSON.parse(
     body || ""

@@ -4,6 +4,7 @@ import { GetCategoryInfoResponse } from "../types";
 import { getClient } from "../utils/pgClient";
 import { response200, response400, response404 } from "../utils/responses";
 
+//Retrieves information for a specified category
 export const handler = async ({ pathParameters }: APIGatewayEvent) => {
   const { categoryId } = pathParameters || {};
 

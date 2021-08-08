@@ -4,6 +4,7 @@ import { answerQuestion } from "../db/answerQuestion";
 import { APIGatewayProxyEvent } from "aws-lambda";
 import { AnswerQuestionRequest, AnswerQuestionResponse } from "../types";
 
+//Retrieves answer to a question from an admin and attempts to write it to the database
 export const handler = async ({
   requestContext,
   pathParameters,

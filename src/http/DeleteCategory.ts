@@ -4,6 +4,7 @@ import { DeleteCategoryResponse } from "../types";
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Deletes a specified 'category' record from the database
 export const handler = async ({ pathParameters }: APIGatewayProxyEvent) => {
   const { categoryId } = pathParameters || {};
 

@@ -4,6 +4,7 @@ import { CreateCategoryArticleResponse, CreateCategoryArticleRequest } from "../
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Attempts to create a new 'article' record in the database with a valid category, using the fields provided
 export const handler = async ({
   body,
   pathParameters,

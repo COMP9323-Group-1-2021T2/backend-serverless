@@ -7,6 +7,7 @@ import {
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Attempts to overwrite a specified 'article' record in the database with a valid category, using the fields provided
 export const handler = async ({
   body,
   pathParameters,

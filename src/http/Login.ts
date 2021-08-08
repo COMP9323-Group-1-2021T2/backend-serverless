@@ -5,6 +5,7 @@ import { getUserFromEmailAndPassword } from "../db/getUserFromEmailAndPassword";
 import { getClient } from "../utils/pgClient";
 import { createAccessToken } from "../utils/auth";
 
+//Attempts to login a user given their credentials
 export const handler = async ({ body }: APIGatewayProxyEvent) => {
   const { email, password } = JSON.parse(body || "") as LoginRequest;
 

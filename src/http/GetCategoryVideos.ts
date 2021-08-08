@@ -4,6 +4,7 @@ import { GetCategoryVideosResponse } from "../types";
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Retrives all 'video' records from database with category matching categoryId
 export const handler = async ({ pathParameters }: APIGatewayEvent) => {
   const { categoryId } = pathParameters || {};
 

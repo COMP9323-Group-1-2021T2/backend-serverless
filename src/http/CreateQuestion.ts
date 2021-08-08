@@ -7,6 +7,7 @@ import {
 import { getClient } from "../utils/pgClient";
 import { response200, response400 } from "../utils/responses";
 
+//Attempts to create a new 'question' record in the database
 export const handler = async ({
   body,
 }: APIGatewayProxyEvent) => {

@@ -4,6 +4,7 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 import { deleteQuestion } from "../db/deleteQuestion";
 import { DeleteQuestionResponse } from "../types";
 
+//Deletes specified 'question' record from the database
 export const handler = async ({
   pathParameters,
 }: APIGatewayProxyEvent) => {
