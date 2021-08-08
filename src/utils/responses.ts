@@ -1,3 +1,5 @@
+//List of responces to use for http routes
+
 export const response200 = <T>(payload: T) => ({
   headers: {
     "Access-Control-Allow-Origin": "*",

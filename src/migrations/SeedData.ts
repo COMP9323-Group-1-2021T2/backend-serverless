@@ -2,9 +2,10 @@ import { getClient } from "../utils/pgClient";
 export const handler = async () => {
   const client = getClient()
   await client.connect()
+  
+  //Seed Database with data for demonstration and testing purposes
 
   // Category
-
   const categoriesInsert = `
     INSERT INTO category(id, name, parent_id) VALUES
       ('ohs', 'Occupational Health and Safety', NULL),

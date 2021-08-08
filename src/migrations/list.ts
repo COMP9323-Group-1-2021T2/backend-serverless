@@ -1,5 +1,7 @@
 import { Client } from "pg";
 
+//Database Schema with Migrations
+
 const migrations = {
   v00_add_uuid_extension: async (client: Client) => {
     await client.query(`

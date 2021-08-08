@@ -2,6 +2,7 @@ import { Client } from "pg";
 import { getClient } from "../utils/pgClient";
 import migrations from "./list";
 
+//Handler for migrating data to a newer database version
 export const handler = async () => {
   console.log("Running migrations...")
 
@@ -29,6 +30,7 @@ export const handler = async () => {
   }
 }
 
+//Retrieves names that already exist in the current migration
 const getCurrentMigratedNames = async (client: Client): Promise<string[]> => {
   const migrationTableQuery = `
     CREATE TABLE IF NOT EXISTS migration (
@@ -48,6 +50,7 @@ type MigrationRow = {
   name: string;
 }
 
+//Add new table to migration
 const addToMigration = async (client: Client, name: string): Promise<void> => {
   const query = 'INSERT INTO migration(name, created_at) VALUES($1, NOW())'
   const values = [name]

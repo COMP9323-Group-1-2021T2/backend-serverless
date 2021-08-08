@@ -3,6 +3,7 @@ import { JwtClaims, RequestContext } from "../types";
 import { generatePolicy } from "../utils/generatePolicy";
 import { getEnv } from "../utils/getEnv";
 
+//Validates routes with JWT claims
 export const handler = async (event: any, _context: any, callback: any) => {
   if (!event.authorizationToken) {
     return callback("Unauthorized");
