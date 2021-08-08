@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Video } from "../types";
 
+//Overwrites 'video' record with provided information
 export const updateVideo = async (
   client: Client,
   id: string,

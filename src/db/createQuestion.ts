@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Question } from "../types";
 
+//Creates 'question' record in database
 export const createQuestion = async (
   client: Client,
   question: string

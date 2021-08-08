@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Category } from "../types";
 
+//Creates 'category' record in database
 export const createCategory = async (
   client: Client,
   id: string,

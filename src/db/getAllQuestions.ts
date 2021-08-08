@@ -1,6 +1,7 @@
 import { Client } from 'pg';
 import { Question } from '../types';
 
+//Retrieves all 'question' records from database
 export const getAllQuestions = async (client: Client): Promise<Question[]> => {
   const query = `
     SELECT *

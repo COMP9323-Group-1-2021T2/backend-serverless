@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Article } from "../types";
 
+//Overwrites 'article' record with provided information
 export const updateArticle = async (
   client: Client,
   id: string,

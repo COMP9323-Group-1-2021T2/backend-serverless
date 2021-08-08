@@ -1,5 +1,6 @@
 import { Client } from "pg";
 
+//Deletes 'category' record from database where id matches input id
 export const deleteCategory = async (
   client: Client,
   id: string

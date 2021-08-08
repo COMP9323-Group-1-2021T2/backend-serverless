@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Question } from "../types";
 
+//Updates 'question' record in database
 export const answerQuestion = async (
   client: Client,
   userId: string,

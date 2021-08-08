@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { Video } from "../types";
 
+//Creates 'video' record in database
 export const createVideo = async (
   client: Client,
   categoryId: string,
