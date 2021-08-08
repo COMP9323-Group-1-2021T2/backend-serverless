@@ -1,3 +1,4 @@
+//Gets environment object for current environment
 export const getEnv = (envVar: string): string => {
   const value = process.env[envVar];
 

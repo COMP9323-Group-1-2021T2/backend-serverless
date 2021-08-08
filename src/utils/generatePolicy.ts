@@ -1,5 +1,6 @@
 import { APIGatewayAuthorizerWithContextResult } from "aws-lambda";
 
+//AWS Lambda Authorizer function
 export function generatePolicy<T>(
   principalId: string,
   effect: string,
